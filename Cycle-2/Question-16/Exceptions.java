@@ -4,7 +4,6 @@
  * b. Null point exception
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exceptions {
@@ -25,7 +24,7 @@ public class Exceptions {
         } catch (NullPointerException e) {
             System.out.println("Error: Null pointer exception!");
         }
-        
+
         scanner.close();
     }
 }
