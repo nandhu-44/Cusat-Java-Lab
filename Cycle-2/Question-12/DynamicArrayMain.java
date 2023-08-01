@@ -1,4 +1,3 @@
-
 /**
  * Write a program to create a class DynamicArray to implement a dynamic array. Provide
  * a. Constructor to initialize the array
@@ -8,40 +7,71 @@
  * e. Function to search an element
  */
 
-import java.util.ArrayList;
-
 class DynamicArray<T> {
-    private ArrayList<T> arrayList;
+    private Object[] array;
+    private int count;
+    private static final int DEFAULT_CAPACITY = 1;
 
     public DynamicArray() {
-        arrayList = new ArrayList<>();
+        array = new Object[DEFAULT_CAPACITY];
+        count = 0;
     }
 
     public void printArray() {
-        System.out.println(arrayList);
+        for (int i = 0; i < count; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
     }
 
     public void add(T element) {
-        arrayList.add(element);
+        if (count == array.length) {
+            resizeArray();
+        }
+        array[count++] = element;
     }
 
     public void add(int index, T element) {
-        if (index < 0 || index > arrayList.size()) {
+        if (index < 0 || index > count) {
             System.out.println("Invalid index");
             return;
         }
-        arrayList.add(index, element);
+        if (count == array.length) {
+            resizeArray();
+        }
+        for (int i = count; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+        array[index] = element;
+        count++;
     }
 
     public void remove(int index) {
-        if (index < 0 || index >= arrayList.size()) {
+        if (index < 0 || index >= count) {
             System.out.println("Invalid index");
+            return;
         }
-        arrayList.remove(index);
+        for (int i = index; i < count - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        count--;
     }
 
     public int search(T element) {
-        return arrayList.indexOf(element);
+        for (int i = 0; i < count; i++) {
+            if (array[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void resizeArray() {
+        Object[] newArray = new Object[array.length * 2];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        array = newArray;
     }
 }
 
@@ -76,9 +106,9 @@ public class DynamicArrayMain {
 
 /**
  * ___Output___
- * [10, 20, 30]
- * [10, 15, 20, 30]
- * [10, 15, 30]
+ * 10 20 30
+ * 10 15 20 30
+ * 10 15 30
  * Element found at index: 1
- * [A, B, C]
+ * A B C
  */

@@ -149,10 +149,10 @@ public class ExceptionHandler extends javax.swing.JFrame {
         try {
             int numberOfNumbers = Integer.parseInt(txt_nos.getText());
             String numbersText = txt_numbers.getText();
-            String[] numbersArray = numbersText.trim().split(" ");
+            String[] numbersArray = numbersText.trim().split(",");
 
             if (numbersArray.length != numberOfNumbers) {
-                throw new Exception("Number of numbers and numbers entered do not match!");
+                throw new Exception("Number of numbers and numbers entered do not match!\nUse comma to separate numbers.");
             }
 
             int divisor = Integer.parseInt(txt_divisor.getText());
@@ -161,8 +161,8 @@ public class ExceptionHandler extends javax.swing.JFrame {
             }
 
             int sum = 0;
-            for (String number : numbersArray) {
-                sum += Integer.parseInt(number);
+            for (String numberString : numbersArray) {
+                sum += Integer.parseInt(numberString.trim());
             }
 
             double result = (double) sum / divisor;
