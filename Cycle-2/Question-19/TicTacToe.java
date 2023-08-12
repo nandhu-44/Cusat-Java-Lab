@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class TicTacToe extends JFrame implements ActionListener {
     private final int GRID_SIZE = 3;
@@ -17,6 +16,7 @@ public class TicTacToe extends JFrame implements ActionListener {
         gridButtons = new JButton[GRID_SIZE][GRID_SIZE];
         initializeButtons();
         setVisible(true);
+        setResizable(false);
     }
 
     private void initializeButtons() {
