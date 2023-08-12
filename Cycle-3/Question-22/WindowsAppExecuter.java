@@ -8,29 +8,42 @@ import java.lang.Runtime;
 
 public class WindowsAppExecuter extends javax.swing.JFrame {
 
+    private final String BGCOLOR = "#2c3e50";
+    private final String FGCOLOR = "#ecf0f1";
+
     public WindowsAppExecuter() {
         initComponents();
         setTitle("Java App Executer");
+        setIconImage(appIcon.getImage());
+        setResizable(false);
+        getContentPane().setBackground(java.awt.Color.decode(BGCOLOR));
+
     }
 
     private void initComponents() {
-
+        appIcon = new ImageIcon("icons/applogo.png");
         notepadIcon = new ImageIcon("icons/notepad.png");
         calculatorIcon = new ImageIcon("icons/calculator.png");
         paintIcon = new ImageIcon("icons/paint.png");
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel1.setBackground(java.awt.Color.decode(BGCOLOR));
+
         notepadButton = new javax.swing.JButton(notepadIcon);
         paintButton = new javax.swing.JButton(paintIcon);
         calculatorButton = new javax.swing.JButton(calculatorIcon);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        
+        jLabel1.setForeground(java.awt.Color.decode(FGCOLOR));
+        jLabel2.setForeground(java.awt.Color.decode(FGCOLOR));
+        jLabel3.setForeground(java.awt.Color.decode(FGCOLOR));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         notepadButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { 
                 notepadButtonActionPerformed(evt);
             }
         });
@@ -131,12 +144,19 @@ public class WindowsAppExecuter extends javax.swing.JFrame {
 
     private void launchExternalApplication(String executableName) {
         Runtime runtime = Runtime.getRuntime();
-
         try {
-            runtime.exec(executableName);
+            Process process = runtime.exec(executableName);
+            setVisible(false);
+            process.waitFor();
+            setVisible(true);
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Something went wrong while opening " + executableName.split(".exe")[0] + " !", "Error", 0);
+            JOptionPane.showMessageDialog(this,
+                    "Something went wrong while opening " + executableName.split(".exe")[0] + " !", "Error", 0);
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                    "Something went wrong while opening " + executableName.split(".exe")[0] + " !", "Error", 0);
         }
     }
 
@@ -179,5 +199,6 @@ public class WindowsAppExecuter extends javax.swing.JFrame {
     private javax.swing.Icon notepadIcon;
     private javax.swing.Icon calculatorIcon;
     private javax.swing.Icon paintIcon;
+    private javax.swing.ImageIcon appIcon;
 
 }
