@@ -35,12 +35,16 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
                 Graphics2D g2d = (Graphics2D) g;
                 Color color1 = Color.decode("#a513d1");
                 Color color2 = Color.decode("#0f99a8");
-                GradientPaint gradient = new GradientPaint(
-                        new Point2D.Float(0, 0), color1,
-                        new Point2D.Float(getWidth(), getHeight()), color2);
-
+                Color color3 = Color.decode("#2bf08a");
+                float[] fractions = { 0.0f, 0.7f, 1.0f };
+                Color[] colors = { color1, color2, color3 };
+                MultipleGradientPaint gradient = new LinearGradientPaint(
+                        new Point2D.Float(0, 0),
+                        new Point2D.Float(getWidth(), getHeight()),
+                        fractions, colors);
                 g2d.setPaint(gradient);
                 g2d.fill(new Rectangle2D.Float(0, 0, getWidth(), getHeight()));
+
             }
         };
         jLabel1 = new javax.swing.JLabel();
@@ -205,11 +209,16 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
             EvenThread evenThread = new EvenThread(number, "EVEN.txt");
             oddThread.start();
             evenThread.start();
+            if (!generated) {
+                btn_display.setEnabled(true);
+                btn_display.setForeground(Color.decode("#252525"));
+                btn_generate.setText("Regenerate");
+                btn_generate.setBackground(Color.decode("#fa7c28"));
+            } else if (generated) {
+                field_area_odd.setText("");
+                field_area_even.setText("");
+            }
             generated = true;
-            btn_display.setEnabled(true);
-            btn_display.setForeground(Color.decode("#252525"));
-            btn_generate.setText("Regenerate");
-            btn_generate.setBackground(Color.decode("#fa7c28"));
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid number!", "Error", JOptionPane.ERROR_MESSAGE);
         }
