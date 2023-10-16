@@ -1,3 +1,4 @@
+
 /**
  * Write a program to create a class employee having members Employee id, Employee name, date 
  * of birth, date of joining, and salary. Read the details of n employees, sort the employee list in the 
@@ -99,13 +100,13 @@ class EmployeeList {
 
     public void sort() {
         for (int i = 1; i < count; i++) {
-            Employee current = employees[i];
             int j = i - 1;
-            while (j >= 0 && current.getSalary() > employees[j].getSalary()) {
-                employees[j + 1] = employees[j];
+            while(j>=0 && employees[j].getSalary() < employees[j+1].getSalary()){
+                Employee temp = employees[j];
+                employees[j] = employees[j+1];
+                employees[j+1] = temp;
                 j--;
             }
-            employees[j + 1] = current;
         }
     }
 }

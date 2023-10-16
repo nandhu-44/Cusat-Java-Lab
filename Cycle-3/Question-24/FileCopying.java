@@ -31,7 +31,7 @@ public class FileCopying {
         if (destinationFile.exists()) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Destination file already exists.");
-            System.out.println("Do you want to overwrite? (y/n)");
+            System.out.print("Do you want to overwrite? (y/n) : ");
             String choice = scanner.nextLine();
             if (choice.equals("n")) {
                 System.out.println("File not overwritten.");

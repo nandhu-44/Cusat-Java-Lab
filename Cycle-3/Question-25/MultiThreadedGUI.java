@@ -11,13 +11,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
+import java.awt.event.*;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.*;
+import java.util.logging.Level;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class MultiThreadedGUI extends javax.swing.JFrame {
+public class MultiThreadedGUI extends JFrame {
 
     public MultiThreadedGUI() {
         initComponents();
@@ -29,7 +31,7 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
 
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel() {
+        jPanel1 = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
@@ -47,21 +49,21 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
 
             }
         };
-        jLabel1 = new javax.swing.JLabel();
-        field_number = new javax.swing.JTextField();
-        btn_generate = new javax.swing.JButton();
-        btn_display = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        field_area_even = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        field_area_odd = new javax.swing.JTextArea();
+        jLabel1 = new JLabel();
+        field_number = new JTextField();
+        btn_generate = new JButton();
+        btn_display = new JButton();
+        jLabel2 = new JLabel();
+        jScrollPane1 = new JScrollPane();
+        field_area_even = new JTextArea();
+        jLabel3 = new JLabel();
+        jScrollPane2 = new JScrollPane();
+        field_area_odd = new JTextArea();
         generated = false;
         icon = new ImageIcon("numbers.png");
         number = 0;
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Font labelFont = new Font("Consolas", Font.BOLD, 15);
         Font buttonFont = new Font("Arial", Font.BOLD, 12);
@@ -96,96 +98,96 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(field_area_odd);
 
         btn_generate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 btn_generateActionPerformed(evt);
             }
         });
 
         btn_display.setEnabled(false);
         btn_display.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 btn_displayActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanel1Layout.createParallelGroup(Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .createParallelGroup(Alignment.LEADING, false)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btn_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 169,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btn_display, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(btn_generate, GroupLayout.PREFERRED_SIZE, 169,
+                                                        GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btn_display, GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(field_number, javax.swing.GroupLayout.PREFERRED_SIZE, 300,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 58,
+                                                        GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(field_number, GroupLayout.PREFERRED_SIZE, 300,
+                                                        GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .createParallelGroup(Alignment.LEADING)
+                                                        .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE,
+                                                                37, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE,
+                                                                37, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(26, 26, 26)
                                                 .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .createParallelGroup(Alignment.LEADING)
                                                         .addComponent(jScrollPane1)
                                                         .addComponent(jScrollPane2))))
                                 .addContainerGap(18, Short.MAX_VALUE)));
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanel1Layout.createParallelGroup(Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
-                                        .addComponent(field_number, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(field_number, GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.DEFAULT_SIZE,
+                                                GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(btn_generate)
                                         .addComponent(btn_display))
                                 .addGap(39, 39, 39)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
                                         .addComponent(jLabel2)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.DEFAULT_SIZE,
+                                                GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(29, 29, 29)
                                                 .addComponent(jLabel3))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(39, 39, 39)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(20, Short.MAX_VALUE)));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                layout.createParallelGroup(Alignment.LEADING)
+                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                layout.createParallelGroup(Alignment.LEADING)
+                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }
 
-    private void btn_generateActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btn_generateActionPerformed(ActionEvent evt) {
         String numberString = field_number.getText();
         if (numberString.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a number!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -224,7 +226,7 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
         }
     }
 
-    private void btn_displayActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btn_displayActionPerformed(ActionEvent evt) {
         if (!generated) {
             JOptionPane.showMessageDialog(this, "Please generate the numbers first!", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -250,23 +252,23 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(Level.SEVERE,
                     null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+        } catch (UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MultiThreadedGUI.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -276,17 +278,17 @@ public class MultiThreadedGUI extends javax.swing.JFrame {
         });
     }
 
-    private javax.swing.JButton btn_display;
-    private javax.swing.JButton btn_generate;
-    private javax.swing.JTextArea field_area_even;
-    private javax.swing.JTextArea field_area_odd;
-    private javax.swing.JTextField field_number;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private JButton btn_display;
+    private JButton btn_generate;
+    private JTextArea field_area_even;
+    private JTextArea field_area_odd;
+    private JTextField field_number;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JPanel jPanel1;
+    private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane2;
     private boolean generated;
     private int number;
     private ImageIcon icon;

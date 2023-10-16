@@ -22,7 +22,7 @@ public class TowerOfHanoi {
         int disk = scanner.nextInt();
         scanner.close();
 
-        System.out.println("No. of moves required: " + (disk * disk - 1));
+        System.out.println("No. of moves required: " + ((int) Math.pow(2, disk) - 1));
         solveTowerOfHanoi(disk, 'A', 'B', 'C');
     }
 }
@@ -30,7 +30,7 @@ public class TowerOfHanoi {
 /**
  *___Output___
  * Enter the number of disks: 3
- * No. of moves required: 8
+ * No. of moves required: 7
  * Move disk 1 ; A => C
  * Move disk 2 ; A => B
  * Move disk 1 ; C => B

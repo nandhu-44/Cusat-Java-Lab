@@ -35,7 +35,7 @@ public class WindowsAppExecuter extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        
+
         jLabel1.setForeground(java.awt.Color.decode(FGCOLOR));
         jLabel2.setForeground(java.awt.Color.decode(FGCOLOR));
         jLabel3.setForeground(java.awt.Color.decode(FGCOLOR));
@@ -43,7 +43,7 @@ public class WindowsAppExecuter extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         notepadButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) { 
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 notepadButtonActionPerformed(evt);
             }
         });
